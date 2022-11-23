@@ -25,6 +25,7 @@ const Books = (sequelize) => {
     },
     book_reserved: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: true,
     },
   };

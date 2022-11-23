@@ -36,8 +36,6 @@ Router.post("/reserve/:id", async (req, res) => {
       return res.status(400).send("Knyga jau rezervuota");
     }
 
-    // also
-
     book.book_reserved = 1;
     await book.save();
 

@@ -62,7 +62,19 @@ const Books = () => {
             {books.map((book) => (
               <tr key={book.id}>
                 <td>{book.id}</td>
-                <td>{book.book_image}</td>
+                <td>
+                  <img
+                    style={{ width: "100px" }}
+                    src={
+                      book.book_image
+                        ? book.book_image
+                        : "https://via.placeholder.com/150"
+                    }
+                    className="img-fluid"
+                    alt={book.title}
+                  />
+                </td>
+
                 <td>{book.book_name}</td>
                 <td>{book.book_author}</td>
                 <td>{book.book_description}</td>

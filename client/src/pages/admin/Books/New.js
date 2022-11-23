@@ -59,6 +59,15 @@ const NewBook = () => {
             />
           </div>
           <div className="form-group mb-2">
+            <label className="mb-1">Knygos viršelis:</label>
+            <input
+              type="text"
+              name="book_image"
+              className="form-control"
+              onChange={handleForm}
+            />
+          </div>
+          <div className="form-group mb-2">
             <label className="mb-1">Žanras:</label>
             <input
               type="text"
@@ -86,7 +95,7 @@ const NewBook = () => {
             />
           </div>
 
-          <button className="btn btn-primary">Pridėti knygą</button>
+          <button className="btn btn-success">Pridėti knygą</button>
         </form>
       </div>
     </>

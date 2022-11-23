@@ -17,13 +17,16 @@ const Pagrindinis = () => {
       .then((resp) => setBooks(resp.data))
 
       .catch((error) => console.log(error));
-  }, [refresh]);
+  }, []);
 
   const handleReservation = (id) => {
     axios
       .post("/api/books/reserve/" + id)
       .then((resp) => {
+        // Event.preventDefault();
         setReserved(resp.data);
+        console.log(resp.data);
+
         setRefresh(!refresh);
 
         setAlert({
@@ -45,13 +48,10 @@ const Pagrindinis = () => {
     axios
       .post("/api/books/cancel/" + id)
       .then((resp) => {
+        // Event.preventDefault();
         setReserved(resp.data);
+        // console.log(resp.data);
         setRefresh(!refresh);
-
-        setAlert({
-          message: resp.data,
-          status: "success",
-        });
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +102,7 @@ const Pagrindinis = () => {
 
                   {book.book_reserved === false && userInfo.role === 0 ? (
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-success"
                       onClick={() => handleReservation(book.id)}
                     >
                       Rezervuoti
