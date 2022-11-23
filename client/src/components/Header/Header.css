@@ -1,74 +1,146 @@
 ul.nav li > .nav-link {
-    position: relative;
-    color: white;
-    transition: all .2s ease-in-out;
+  position: relative;
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
 
 ul.nav li > .nav-link::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: white;
-    transition: all .2s ease-in-out;
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: white;
+  transition: all 0.2s ease-in-out;
 }
 
 ul.nav li:hover > a::after {
-    width: 100%;
+  width: 100%;
 }
 
 ul.nav li .nav-link:active,
 ul.nav li .nav-link:focus,
 ul.nav li .nav-link:hover {
-    color: white;
+  color: white;
 }
 
 ul.nav li .nav-link-active {
-    color: #ff5f91;
+  color: #ff5f91;
 }
 
 ul.nav li .nav-link-active:active,
 ul.nav li .nav-link-active:focus,
 ul.nav li .nav-link-active:hover {
-    color: white;
+  color: white;
 }
 
 ul.nav li {
-    position: relative;
-} 
+  position: relative;
+}
 
 ul.nav li:hover > ul {
-    max-height: 1000px;
-    padding: .7em 1rem .5rem 2.5rem;
+  max-height: 1000px;
+  padding: 0.7em 1rem 0.5rem 2.5rem;
 }
 
 ul.nav li > ul {
-    position: absolute;
-    left: 0;
-    background: rgba(33,37,41);
-    top: 41px;
-    width: 200px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    max-height: 0;
-    transition: all .2s ease-in-out;
+  position: absolute;
+  left: 0;
+  background: rgba(33, 37, 41);
+  top: 41px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 ul.nav li > ul > li > a {
-    padding: 0.4rem 0;
-    font-size: 14px;
+  padding: 0.4rem 0;
+  font-size: 14px;
 }
 
 ul.nav li > ul > li > a::after {
-    display: none;
+  display: none;
 }
 
 ul.nav li > ul > li > a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
+/* Search bar */
 
+.searchBar {
+  margin-top: 0.5rem;
+}
 
+.SearchBarInput {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.SearchBarInput:focus {
+  color: rgb(204, 127, 55);
+  background-color: #fff;
+  border-color: rgb(204, 127, 55);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(204, 127, 55, 0.25);
+}
+
+.searchDropDown {
+  z-index: 2;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 13rem;
+  -webkit-box-shadow: 0px 18px 15px 5px #000000;
+  box-shadow: 0px 18px 15px 5px #000000;
+  border-radius: 0px 0px 9px 9px;
+}
+
+.searchBarImg img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.searchDropDown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.searchDropDown li {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.searchDropDown li a {
+  display: flex;
+  gap: 2px;
+}
+.searchDropDown a {
+  text-decoration: none;
+  color: black;
+}
+
+.searchDropDown a:hover {
+  text-decoration: none;
+  color: #ff6c00;
+  font-weight: bold;
+}

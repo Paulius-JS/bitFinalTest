@@ -60,6 +60,7 @@ export const bookValidator = (req, res, next) => {
     book_name: Joi.string().min(2).required(),
     book_author: Joi.string().min(2).required(),
     book_genre: Joi.string().required(),
+    book_description: Joi.string().required(),
   });
 
   validate(schema, req, res, next);

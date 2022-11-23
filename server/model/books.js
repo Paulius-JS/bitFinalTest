@@ -23,9 +23,9 @@ const Books = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    reserved: {
+    book_reserved: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
   };
 

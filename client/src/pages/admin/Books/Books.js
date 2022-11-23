@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import MainContext from "../../../context/MainContext";
 
-const Saloons = () => {
-  const [saloons, setSaloons] = useState([]);
+const Books = () => {
+  const [books, setBooks] = useState([]);
   const navigate = useNavigate();
   const { alert, setAlert } = useContext(MainContext);
 
   const handleDelete = (id) => {
     axios
-      .delete("/api/saloons/delete/" + id)
+      .delete("/api/books/delete/" + id)
       .then((resp) => {
         setAlert({
           message: resp.data,
@@ -32,48 +32,58 @@ const Saloons = () => {
 
   useEffect(() => {
     axios
-      .get("/api/saloons/")
-      .then((resp) => setSaloons(resp.data))
+      .get("/api/books/")
+      .then((resp) => setBooks(resp.data))
       .catch((error) => console.log(error));
   }, [alert]);
 
   return (
     <>
       <div className="d-flex justify-content-between page-heading">
-        <h1>Grožio salonai</h1>
+        <h1>Knygų sąrašas</h1>
         <Link to="/admin/books/new" className="btn btn-success">
-          Naujas salonas
+          Nauja Knyga
         </Link>
       </div>
-      {saloons ? (
+      {books ? (
         <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th>#</th>
+              <th>Viršelis</th>
               <th>Pavadinimas</th>
-              <th>Adresas</th>
-              <th>Telefono nr.</th>
+              <th>Autorius</th>
+              <th>Aprašymas</th>
+              <th>Rezervuota</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {saloons.map((saloon) => (
-              <tr key={saloon.id}>
-                <td>{saloon.id}</td>
-                <td>{saloon.name}</td>
-                <td>{saloon.address}</td>
-                <td>{saloon.phone}</td>
+            {books.map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.book_image}</td>
+                <td>{book.book_name}</td>
+                <td>{book.book_author}</td>
+                <td>{book.book_description}</td>
+
+                {book.book_reserved === true ? (
+                  <td>Rezervuota</td>
+                ) : (
+                  <td>Laisva</td>
+                )}
+
                 <td>
                   <div className="d-flex justify-content-end gap-2">
                     <Link
-                      to={"/admin/saloons/edit/" + saloon.id}
+                      to={"/admin/books/edit/" + book.id}
                       className="btn btn-primary"
                     >
                       Redaguoti
                     </Link>
                     <button
                       className="btn btn-warning"
-                      onClick={() => handleDelete(saloon.id)}
+                      onClick={() => handleDelete(book.id)}
                     >
                       Ištrinti
                     </button>
@@ -84,10 +94,10 @@ const Saloons = () => {
           </tbody>
         </table>
       ) : (
-        <h3>Nėra sukurtų grožio salonų</h3>
+        <h3>Nėra pridėtų knygų</h3>
       )}
     </>
   );
 };
 
-export default Saloons;
+export default Books;
