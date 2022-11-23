@@ -9,6 +9,7 @@ const Pagrindinis = () => {
 
   const [books, setBooks] = useState([]);
   const [reserved, setReserved] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     axios
@@ -16,13 +17,14 @@ const Pagrindinis = () => {
       .then((resp) => setBooks(resp.data))
 
       .catch((error) => console.log(error));
-  }, []);
+  }, [refresh]);
 
   const handleReservation = (id) => {
     axios
       .post("/api/books/reserve/" + id)
       .then((resp) => {
         setReserved(resp.data);
+        setRefresh(!refresh);
 
         setAlert({
           message: resp.data,
@@ -44,6 +46,7 @@ const Pagrindinis = () => {
       .post("/api/books/cancel/" + id)
       .then((resp) => {
         setReserved(resp.data);
+        setRefresh(!refresh);
 
         setAlert({
           message: resp.data,
@@ -73,11 +76,14 @@ const Pagrindinis = () => {
               <div className="card h-100">
                 <img
                   src={
-                    book.cover ? book.cover : "https://via.placeholder.com/150"
+                    book.book_image
+                      ? book.book_image
+                      : "https://via.placeholder.com/150"
                   }
                   className="card-img-top"
                   alt="..."
                 />
+
                 <div className="card-body">
                   <h5 className="card-title">{book.book_name}</h5>
                   <p className="card-text">Autorius: {book.book_author}</p>
@@ -102,9 +108,9 @@ const Pagrindinis = () => {
                       Rezervuoti
                     </button>
                   ) : (
-                    <button className="btn btn-primary" disabled>
-                      Jūs jau rezervavote knygą
-                    </button>
+                    // if not logged in not show
+
+                    <p></p>
                   )}
                   {book.book_reserved === true && userInfo.role === 0 ? (
                     <button

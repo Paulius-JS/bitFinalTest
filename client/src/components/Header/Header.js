@@ -112,15 +112,15 @@ const Header = () => {
 
           <div className="text-end">
             {userInfo.id ? (
-              <button onClick={handleLogout} className="btn btn-primary">
+              <button onClick={handleLogout} className="btn btn-success">
                 Atsijungti
               </button>
             ) : (
               <>
-                <Link to="/login" className="btn btn-outline-light me-2">
+                <Link to="/login" className="btn btn-outline-success me-2">
                   Prisijungimas
                 </Link>
-                <Link to="/register" className="btn btn-primary">
+                <Link to="/register" className="btn btn-success">
                   Registracija
                 </Link>
               </>

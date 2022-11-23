@@ -67,7 +67,7 @@ const Login = () => {
             placeholder="slaptažodis"
           />
         </div>
-        <button className="btn btn-primary">Prisijungti</button>
+        <button className="btn btn-success">Prisijungti</button>
       </form>
     </>
   );

@@ -76,6 +76,16 @@ const EditBook = () => {
             <label className="mb-1">knygos žanras:</label>
             <input
               type="text"
+              name="book_image"
+              className="form-control"
+              onChange={handleForm}
+              value={form.book_image}
+            />
+          </div>
+          <div className="form-group mb-2">
+            <label className="mb-1">knygos žanras:</label>
+            <input
+              type="text"
               name="book_genre"
               className="form-control"
               onChange={handleForm}
@@ -102,7 +112,21 @@ const EditBook = () => {
               value={form.book_description}
             />
           </div>
-          <button className="btn btn-primary">Išsaugoti</button>
+
+          <div className="form-group mb-2">
+            <label className="mb-1">Rezervacijos statusas:</label>
+            <select
+              name="book_reserved"
+              className="form-control"
+              onChange={handleForm}
+              value={form.book_reserved}
+            >
+              <option value="true">Rezervuota</option>
+              <option value="false">Laisva</option>
+            </select>
+          </div>
+
+          <button className="btn btn-success">Išsaugoti</button>
         </form>
       </div>
     </>

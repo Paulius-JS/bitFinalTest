@@ -77,12 +77,12 @@ const Books = () => {
                   <div className="d-flex justify-content-end gap-2">
                     <Link
                       to={"/admin/books/edit/" + book.id}
-                      className="btn btn-primary"
+                      className="btn btn-warning"
                     >
                       Redaguoti
                     </Link>
                     <button
-                      className="btn btn-warning"
+                      className="btn btn-danger"
                       onClick={() => handleDelete(book.id)}
                     >
                       Ištrinti
