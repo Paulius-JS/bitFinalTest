@@ -23,6 +23,7 @@ const Pagrindinis = () => {
       .post("/api/books/reserve/" + id)
       .then((resp) => {
         setReserved(resp.data);
+
         setAlert({
           message: resp.data,
           status: "success",
@@ -38,7 +39,26 @@ const Pagrindinis = () => {
       });
   };
 
-  // make search if search is not empty display all books
+  const handleCancel = (id) => {
+    axios
+      .post("/api/books/cancel/" + id)
+      .then((resp) => {
+        setReserved(resp.data);
+
+        setAlert({
+          message: resp.data,
+          status: "success",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+
+        setAlert({
+          message: error.response.data,
+          status: "danger",
+        });
+      });
+  };
 
   return (
     <>
@@ -61,7 +81,7 @@ const Pagrindinis = () => {
                 <div className="card-body">
                   <h5 className="card-title">{book.book_name}</h5>
                   <p className="card-text">Autorius: {book.book_author}</p>
-                  {/* book ganre */}
+
                   <p className="card-text">Žanras: {book.book_genre}</p>
                   <p className="card-text">
                     Aprašymas: {book.book_description}
@@ -73,7 +93,7 @@ const Pagrindinis = () => {
                       <span className="badge bg-danger"> Rezervuota</span>
                     )}
                   </p>
-                  {/* if user role == 0 make rezervation button */}
+
                   {book.book_reserved === false && userInfo.role === 0 ? (
                     <button
                       className="btn btn-primary"
@@ -83,8 +103,18 @@ const Pagrindinis = () => {
                     </button>
                   ) : (
                     <button className="btn btn-primary" disabled>
-                      Rezervuoti
+                      Jūs jau rezervavote knygą
                     </button>
+                  )}
+                  {book.book_reserved === true && userInfo.role === 0 ? (
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleCancel(book.id)}
+                    >
+                      Atšaukti
+                    </button>
+                  ) : (
+                    <p></p>
                   )}
                 </div>
               </div>

@@ -24,33 +24,29 @@ Router.get("/search/:keyword", async (req, res) => {
   }
 });
 
-// Router.post("/reserve/:id", async (req, res) => {
-//   try {
-//     const user = await db.Users.findOne({
-//         where: {
-//             id: req.user.id,
-//         },
-//     });
+Router.post("/reserve/:id", async (req, res) => {
+  try {
+    const book = await db.Books.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
 
-//     const book = await db.Books.findOne({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
+    if (book.book_reserved === 1) {
+      return res.status(400).send("Knyga jau rezervuota");
+    }
 
-//     if (book.book_reserved === 1) {
-//       return res.status(400).send("Knyga jau rezervuota");
-//     }
+    // also
 
-//     book.book_reserved = 1;
-//     await book.save();
+    book.book_reserved = 1;
+    await book.save();
 
-//     res.json(book);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(418).send("server error");
-//   }
-// });
+    res.json(book);
+  } catch (error) {
+    console.log(error);
+    res.status(418).send("server error");
+  }
+});
 
 // cancel book reservation
 Router.post("/cancel/:id", async (req, res) => {
